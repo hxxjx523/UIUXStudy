@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .page{
+            height: 500px;
+            
+        }
+        .page-1{
+            background-color: cadetblue;
+        }
+        .page-2{
+            background-color:darkorchid;
+        }
+        .page-3{
+            background-color:salmon;
+        }
+        .page-4{
+            background-color:khaki;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="header">헤더</div>
+    <div class="page page-1">내용 1</div>
+    <div class="page page-2">내용 2</div>
+    <div class="page page-3">내용 3</div>
+    <div class="page page-4">내용 4</div>
+    <div class="footer">푸터</div>
+
+
+
+    <script src="jquery-3.7.1.min.js"></script>
+    <script src="jquery.scrollify.js"></script>
+    <script>
+        $.scrollify({
+            section: ".page",
+            scrollbars: false,
+            scrollSpeed: 500,
+            interstitialSection: ".header, .footer",
+        })
+    </script>
+</body>
+</html>

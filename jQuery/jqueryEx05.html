@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery-3.7.1.min.js"></script>
+    <style>
+        .imgCont{
+            text-align: center;
+        }
+        .imgCont img{
+            width: 400px;
+            padding: 2px;
+            position: relative;
+            cursor: pointer;
+            z-index: 999;
+            vertical-align: top;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="imgCont" onselect="return false">
+        <img src="./images/image 4.png" alt="" onclick="imgContCopy(this)"/>
+        <img src="./images/image 5.png" alt="" onclick="imgContCopy(this)"/>
+        <img src="./images/image 6.png" alt="" onclick="imgContCopy(this)"/>
+        <img src="./images/image 7.png" alt="" onclick="imgContCopy(this)"/>
+        <img src="./images/image 8.png" alt="" onclick="imgContCopy(this)"/>
+    </div>
+
+    
+    <script>
+        function imgContCopy(imgCont_o){
+            let pos = $(imgCont_o).offset();//클릭한 이미지의 위치를 알아내기
+            let rnd1 = Math.round(Math.random() * 900 - 850);
+            let rnd2 = Math.round(Math.random() * 900 - 450);
+
+            let move_top = pos.top - rnd1;
+            let move_left = pos.left - rnd2;
+
+            $(imgCont_o)
+                .clone()//요소복사
+                .appendTo(".imgCont")
+                .css({top: pos.top, left: pos.left, position:'absolute'})
+                .animate({top:move_top, left:move_left},1000,function(){
+                    let img = this;
+                    setTimeout(function(){$(img).remove();},3000)
+                })
+
+        }
+    </script>
+    
+
+</body>
+</html>
