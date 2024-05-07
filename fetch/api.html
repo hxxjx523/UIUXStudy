@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>학교 급식 정보</title>
+</head>
+<body>
+
+    <h3>학교 급식 정보</h3>
+    <div id="todayMenu"></div>
+
+    <script>
+        let dateData = new Date().toISOString().slice(0, 10)
+        dateData = dateData.replace(/-/g,"") //20240507
+        fetch(`https://open.neis.go.kr/hub/mealServiceDietInfo?KEY=31a252a31b2d4e1fbe6e2e344023d619&Type=json&pIndex=1&pSize=100&ATPT_OFCDC_SC_CODE=B10&SD_SCHUL_CODE=7011569&MLSV_YMD=${dateData}`)
+        .then((response)=> response.json())
+        .then((data)=>{
+            console.log(data.mealServiceDietInfo[1])
+            document.getElementById("todayMenu").innerHTML = 
+            `<h3>[${data.mealServiceDietInfo[1].row[0].MMEAL_SC_NM}]</h3>` + `${data.mealServiceDietInfo[1].row[0].DDISH_NM}`
+        })
+    </script>
+    
+</body>
+</html>
+
+<!-- https://open.neis.go.kr/hub/mealServiceDietInfo?Type=json&pIndex=1&pSize=100&ATPT_OFCDC_SC_CODE=B10&SD_SCHUL_CODE=7011569 -->
